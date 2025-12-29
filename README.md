@@ -1,48 +1,61 @@
-# .
+# ts-vue-todo-ch1
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue 3 + TypeScript 기반 Todo 앱  
+1주 완주 챌린지 (개인)
 
-## Recommended IDE Setup
+## Project Goal
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue 3 Composition API 흐름 익히기
+- TypeScript 기반 데이터 구조 설계 연습
+- 단계별 기능 구현을 통한 Todo 앱 완주
 
-## Recommended Browser Setup
+## 기술 스택
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Vue 3
+- TypeScript
+- Vite
+- npm
+- Tailwind
 
-## Type Support for `.vue` Imports in TS
+## 진행 방식
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+기능 단위로 브랜치를 분리하여 단계적으로 구현합니다.
 
-## Customize configuration
+- feat/1-define-todo-structure
+- feat/2-render-todo-list
+- feat/3-add-remove-todo
+- feat/4-toggle-todo-complete
+- feat/5-add-router(optional)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Features (WIP)
 
-## Project Setup
+- [ ] Todo 추가 / 삭제
+- [ ] 완료 여부 토글
+- [ ] 완료 / 미완료 개수 표시
+- [ ] Router를 이용한 페이지 분리
+- [ ] Tailwind CSS를 활용한 기본 스타일링
 
-```sh
-npm install
-```
+## Environment
 
-### Compile and Hot-Reload for Development
+### Node / nvm
 
-```sh
-npm run dev
-```
+- Node.js: **v22.19.0**
+- nvm: **v0.40.3**
+- nvm을 사용하여 프로젝트별 Node 버전 관리
 
-### Type-Check, Compile and Minify for Production
+## Setup & Install Log
 
-```sh
-npm run build
-```
+```bash
+# Node 설치 (nvm 사용)
+nvm install 24        # Node 설치
+nvm use 24            # Node 사용
+echo "24" > .nvmrc    # 프로젝트 Node 버전 고정
 
-### Lint with [ESLint](https://eslint.org/)
+# Vue 프로젝트 생성
+npm create vue@latest
 
-```sh
-npm run lint
+# 기본 세팅
+npm install # 의존성 설치
+npm run format # 포맷 설정 실행
+npm run dev # 개발 서버 실행
 ```
