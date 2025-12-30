@@ -67,4 +67,7 @@ npm run dev # 개발 서버 실행
 ```bash
 # Tailwind CSS (Vite 플러그인 방식)
 npm install tailwindcss @tailwindcss/vite
+
+# 컴포넌트 자동 import 플러그인
+npm i unplugin-vue-components -D
 ```
