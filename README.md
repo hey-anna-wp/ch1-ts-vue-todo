@@ -15,7 +15,7 @@ Vue 3 + TypeScript 기반 Todo 앱
 - TypeScript
 - Vite
 - npm
-- Tailwind
+- Tailwind CSS (v4)
 
 ## 진행 방식
 
@@ -45,6 +45,8 @@ Vue 3 + TypeScript 기반 Todo 앱
 
 ## Setup & Install Log
 
+### 기본 설치
+
 ```bash
 # Node 설치 (nvm 사용)
 nvm install 24        # Node 설치
@@ -54,8 +56,15 @@ echo "24" > .nvmrc    # 프로젝트 Node 버전 고정
 # Vue 프로젝트 생성
 npm create vue@latest
 
-# 기본 세팅
+# 프로젝트 초기 실행
 npm install # 의존성 설치
 npm run format # 포맷 설정 실행
 npm run dev # 개발 서버 실행
+```
+
+### 추가 설치
+
+```bash
+# Tailwind CSS (Vite 플러그인 방식)
+npm install tailwindcss @tailwindcss/vite
 ```
