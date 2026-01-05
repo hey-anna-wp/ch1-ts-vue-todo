@@ -18,7 +18,7 @@ const closeForm = () => (isFormOpen.value = false)
   <div class="w-full space-y-6">
     <PageHeader title="ts-vue-todo-ch1" subtitle="Vue 3 + TS Todo" />
     <TodoAddButton v-if="!isFormOpen" :open="isFormOpen" @toggle="openForm" />
-    <div v-else class="animate-fade-in">
+    <div v-else>
       <TodoAddForm @cancel="closeForm" />
     </div>
     <TodoList :todos="todos" :done-count="doneCount" :total="todos.length" />
