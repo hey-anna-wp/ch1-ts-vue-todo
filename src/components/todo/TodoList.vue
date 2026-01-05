@@ -14,7 +14,6 @@ const { todos, doneCount, total } = defineProps<{
   <section class="space-y-3">
     <header class="flex items-end justify-between">
       <h2 class="text-base font-semibold text-neutral-100">Todo</h2>
-      <!-- <p class="text-xs text-neutral-400">총 {{ props.todos.length }}개</p> -->
       <TodoSummary :done-count="doneCount" :total="total" />
     </header>
     <ul class="space-y-2">

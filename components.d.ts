@@ -13,7 +13,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     Container: typeof import('./src/components/common/Container.vue')['default']
-    copy: typeof import('./src/components/Container copy.vue')['default']
     PageHeader: typeof import('./src/components/common/PageHeader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
