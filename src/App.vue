@@ -1,15 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed, ref } from "vue"
+import { todos as seedTodos } from "@/data/todos"
+import BaseLayout from "./layouts/BaseLayout.vue"
+
+const todos = ref(seedTodos)
+
+const doneCount = computed(() => todos.value.filter((t) => t.done).length)
+</script>
 
 <template>
-  <main>
-    <h1>Todo App</h1>
-    <div class="text-red-500 font-bold">Tailwind Test</div>
-    <section class="todo-form">
-      <TodoForm />
-    </section>
-
-    <section class="todo-list">
-      <TodoList />
-    </section>
-  </main>
+  <BaseLayout>
+    <RouterView />
+  </BaseLayout>
 </template>
