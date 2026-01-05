@@ -11,10 +11,16 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AppHeader: typeof import('./src/components/AppHeader.vue')['default']
+    Container: typeof import('./src/components/common/Container.vue')['default']
+    PageHeader: typeof import('./src/components/common/PageHeader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TodoForm: typeof import('./src/components/TodoForm.vue')['default']
-    TodoItem: typeof import('./src/components/TodoItem.vue')['default']
-    TodoList: typeof import('./src/components/TodoList.vue')['default']
+    TodoAddButton: typeof import('./src/components/todo/TodoAddButton.vue')['default']
+    TodoAddForm: typeof import('./src/components/todo/TodoAddForm.vue')['default']
+    TodoForm: typeof import('./src/components/todo/TodoForm.vue')['default']
+    TodoItem: typeof import('./src/components/todo/TodoItem.vue')['default']
+    TodoList: typeof import('./src/components/todo/TodoList.vue')['default']
+    TodoSummary: typeof import('./src/components/todo/TodoSummary.vue')['default']
   }
 }

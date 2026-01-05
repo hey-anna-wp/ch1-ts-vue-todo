@@ -1,15 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import BaseLayout from "./layouts/BaseLayout.vue"
+</script>
 
 <template>
-  <main>
-    <h1>Todo App</h1>
-    <div class="text-red-500 font-bold">Tailwind Test</div>
-    <section class="todo-form">
-      <TodoForm />
-    </section>
-
-    <section class="todo-list">
-      <TodoList />
-    </section>
-  </main>
+  <BaseLayout>
+    <RouterView />
+  </BaseLayout>
 </template>
