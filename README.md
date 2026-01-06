@@ -1,13 +1,13 @@
 # ts-vue-todo-ch1
 
 Vue 3 + TypeScript 기반 Todo 앱  
-1주 완주 챌린지 (개인)
+2주 완주 챌린지 (개인)
 
 ## Project Goal
 
 - Vue 3 Composition API 흐름 익히기
 - TypeScript 기반 데이터 구조 설계 연습
-- 단계별 기능 구현을 통한 Todo 앱 완주
+- 단계별 기능 구현을 통한 Todo 앱 MVP 완주
 
 ## 기술 스택
 
@@ -22,19 +22,65 @@ Vue 3 + TypeScript 기반 Todo 앱
 
 기능 단위로 브랜치를 분리하여 단계적으로 구현합니다.
 
-- feat/1-define-todo-structure
-- feat/2-render-todo-list
-- feat/3-add-remove-todo
-- feat/4-toggle-todo-complete
-- feat/5-add-router(optional)
+- 완료 브랜치
+  - feat/1-define-todo-structure
+  - feat/3-render-todo-list
+  - feat/5-6-add-remove-toggle-todo
+- 예정 브랜치(Planned)
+  - feat/7-add-todo-page
+  - feat/8-persist-todo-localstorage
+  - feat/9-fab-add-button
 
-## Features (WIP)
+## Features (Done)
 
-- [ ] Todo 추가 / 삭제
-- [ ] 완료 여부 토글
-- [ ] 완료 / 미완료 개수 표시
-- [ ] Router를 이용한 페이지 분리
-- [ ] Tailwind CSS를 활용한 기본 스타일링
+- [x] Todo 추가 / 삭제
+- [x] 완료 여부 토글
+- [x] 완료 / 미완료 개수 표시
+- [x] Tailwind CSS 기반 UI 구성
+
+> Note: 현재 버전은 로컬 상태(ref) + 더미 데이터 기반으로 동작하며,
+> 새로고침 시 Todo 데이터는 초기화됩니다.
+
+## Next (Planned)
+
+- [ ] localStorage를 이용한 데이터 영속화 (새로고침 유지)
+- [ ] Router 기반 신규 페이지 추가
+- [ ] Header / Footer UI 보완 및 헤더 메뉴 추가
+- [ ] Todo 추가 버튼 UX 개선 (FAB 형태 고려)
+- [ ] Todo 리스트 UX 개선
+  - 할 일 표시: 한 줄 말줄임(ellipsis)
+  - 전체 보기: hover/tooltip으로 전체 텍스트 확인
+  - 입력 제한: 최대 50자
+  - (선택) 정렬(최신순/오래된순)
+  - 항목이 많아질 경우 페이지네이션 또는 무한 스크롤(선택)
+- [ ] Todo 날짜 기능 추가
+  - 날짜 선택 입력 (Date Picker)
+  - 날짜(일자)별 컬러 마커 표시(팔레트 방식)
+
+## Pages (Planned)
+
+### Home (Main)
+
+- 미완료/완료 Todo를 한 화면에서 관리
+- 완료된 항목은 목록에서 제거하지 않고 "완료" 상태로 표시
+- Todo 날짜를 간략히 표시 (YYYY-MM-DD)
+- 제목이 길 경우: 한 줄 말줄임 + hover/tooltip로 전체 확인
+
+#### 날짜별 컬러 마커(팔레트) 아이디어
+
+- 각 Todo는 선택한 날짜(일자)를 기준으로 “컬러 마커”를 가짐
+- 1일 → 색상 1, 2일 → 색상 2 … 24일 → 색상 24
+- 25일 → 다시 색상 1로 순환 (24일 단위 순환)
+- TodoItem 앞에 작은 점/클립/바 형태로 표시해
+  “언제 해야 하는 할 일인지”를 시각적으로 빠르게 인지
+
+### History (Trash)
+
+- 삭제된 Todo를 모아보는 휴지통 페이지
+- 기능 범위:
+  - 복구 (Rollback)
+  - 영구 삭제 (확인 후 진행)
+- 자동 삭제 정책은 이번 MVP 범위에서는 제외
 
 ## Environment
 
