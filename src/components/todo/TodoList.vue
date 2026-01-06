@@ -8,6 +8,14 @@ const { todos, doneCount, total } = defineProps<{
   doneCount: number
   total: number
 }>()
+
+const emit = defineEmits<{
+  (e: "toggle", id: Todo["id"]): void
+  (e: "remove", id: Todo["id"]): void
+}>()
+
+const onRemove = (id: Todo["id"]) => emit("remove", id)
+const onToggle = (id: Todo["id"]) => emit("toggle", id)
 </script>
 
 <template>
@@ -17,7 +25,13 @@ const { todos, doneCount, total } = defineProps<{
       <TodoSummary :done-count="doneCount" :total="total" />
     </header>
     <ul class="space-y-2">
-      <TodoItem v-for="todo in todos" :key="todo.id" :todo="todo" />
+      <TodoItem
+        v-for="todo in todos"
+        :key="todo.id"
+        :todo="todo"
+        @remove="onRemove"
+        @toggle="onToggle"
+      />
     </ul>
     <p
       v-if="todos.length === 0"
