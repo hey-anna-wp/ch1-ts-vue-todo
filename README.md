@@ -38,12 +38,9 @@ Vue 3 + TypeScript 기반 Todo 앱
 - [x] 완료 / 미완료 개수 표시
 - [x] Tailwind CSS 기반 UI 구성
 
-> Note: 현재 버전은 로컬 상태(ref) + 더미 데이터 기반으로 동작하며,
-> 새로고침 시 Todo 데이터는 초기화됩니다.
-
 ## Next (Planned)
 
-- [ ] localStorage를 이용한 데이터 영속화 (새로고침 유지)
+- [x] localStorage를 이용한 데이터 유지 (새로고침 유지)
 - [ ] Router 기반 신규 페이지 추가
 - [ ] Header / Footer UI 보완 및 헤더 메뉴 추가
 - [ ] Todo 추가 버튼 UX 개선 (FAB 형태 고려)
