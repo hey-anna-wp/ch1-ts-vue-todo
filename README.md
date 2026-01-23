@@ -3,11 +3,25 @@
 Vue 3 + TypeScript 기반 Todo 앱  
 2주 완주 챌린지 (개인)
 
+## Overview
+
+Vue 3 Composition API와 TypeScript를 활용해  
+**기본적인 Todo 앱을 단계적으로 설계·구현하는 개인 MVP 프로젝트**입니다.
+
+기능 단위 브랜치 전략을 사용하여  
+데이터 구조 → 렌더링 → 기능 추가 → UX 개선 순으로 점진적으로 확장했습니다.
+
+## Demo
+
+- Live: https://ch1-ts-vue-todo.vercel.app
+- Preview: (GIF / 스크린샷 추가 예정)
+
 ## Project Goal
 
 - Vue 3 Composition API 흐름 익히기
 - TypeScript 기반 데이터 구조 설계 연습
-- 단계별 기능 구현을 통한 Todo 앱 MVP 완주
+- 기능 단위 브랜치 분리 및 단계적 구현
+- Todo 앱 MVP 완주
 
 ## 기술 스택
 
@@ -79,6 +93,19 @@ Vue 3 + TypeScript 기반 Todo 앱
   - 영구 삭제 (확인 후 진행)
 - 자동 삭제 정책은 이번 MVP 범위에서는 제외
 
+## Folder Structure
+
+```txt
+src/
+┣ assets/
+┣ components/ # 재사용 UI 컴포넌트
+┣ views/ # 라우트 단위 페이지
+┣ router/ # Vue Router 설정
+┣ types/ # TypeScript 타입 정의
+┣ composables/ # 공통 로직 (hooks)
+┣ utils/ # localStorage, 날짜 유틸
+```
+
 ## Environment
 
 ### Node / nvm
@@ -117,4 +144,13 @@ npm i unplugin-vue-components -D
 
 # Prettier + Tailwind 정렬 플러그인
 npm i -D prettier-plugin-tailwindcss
+
+# SVG를 Vue 컴포넌트로 사용하기 위한 Vite 플러그인
+npm i vite-svg-loader
 ```
+
+---
+
+## Credits / Assets
+
+- **Icons**: Lucide (SVG) via [Iconify](https://icon-sets.iconify.design/lucide/)
