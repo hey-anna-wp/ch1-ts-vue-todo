@@ -21,16 +21,16 @@ const onPurgeSelected = () => emit("purgeSelected")
     <div class="flex items-center gap-3 text-sm text-neutral-200">
       <button
         type="button"
-        class="inline-flex h-5 w-5 items-center justify-center rounded border focus:ring-2 focus:ring-emerald-500/40 focus:outline-none"
+        class="inline-flex h-5 w-5 items-center justify-center rounded border focus:ring-2 focus:ring-red-300/70 focus:outline-none"
         :class="{
-          'border-emerald-500 bg-emerald-500/20': allSelected,
+          'border-red-300 bg-red-500/15': allSelected,
           'border-neutral-700': !allSelected,
         }"
         role="checkbox"
         :aria-checked="allSelected"
         @click="onToggleSelectAll"
       >
-        <span v-if="allSelected" class="text-xs text-emerald-400">✓</span>
+        <span v-if="allSelected" class="text-xs text-red-300">✓</span>
       </button>
 
       <span class="min-w-12 text-sm text-neutral-400"> 선택 {{ selectedCount }}</span>
