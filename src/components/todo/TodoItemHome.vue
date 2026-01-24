@@ -1,23 +1,22 @@
 <script setup lang="ts">
 import type { Todo } from "@/types/todo"
+import TodoItemLayout from "../common/TodoItemLayout.vue"
+import IconButton from "@/components/ui/IconButton.vue"
+import ArchiveIcon from "@/assets/icons/archive.svg"
 
-const props = defineProps<{
-  todo: Todo
-}>()
+const props = defineProps<{ todo: Todo }>()
 
 const emit = defineEmits<{
-  (e: "toggle", id: Todo["id"]): void
-  (e: "remove", id: Todo["id"]): void
+  (e: "toggleDone", id: Todo["id"]): void
+  (e: "archive", id: Todo["id"]): void
 }>()
 
-const onToggle = () => emit("toggle", props.todo.id)
+const onToggle = () => emit("toggleDone", props.todo.id)
 </script>
 
 <template>
-  <li
-    class="flex items-center justify-between gap-3 rounded-lg border border-neutral-800 bg-neutral-900 px-4 py-3"
-  >
-    <div class="flex items-center gap-3">
+  <TodoItemLayout>
+    <template #left>
       <button
         type="button"
         class="inline-flex h-5 w-5 items-center justify-center rounded border focus:ring-2 focus:ring-emerald-500/40 focus:outline-none"
@@ -32,13 +31,14 @@ const onToggle = () => emit("toggle", props.todo.id)
       </button>
 
       <span
-        class="text-sm"
+        class="truncate text-sm"
         :class="props.todo.done ? 'text-neutral-400 line-through' : 'text-neutral-100'"
       >
         {{ props.todo.title }}
       </span>
-    </div>
-    <div class="flex items-center gap-2">
+    </template>
+
+    <template #right>
       <span
         class="shrink-0 rounded-full px-2 py-1 text-xs"
         :class="
@@ -47,13 +47,15 @@ const onToggle = () => emit("toggle", props.todo.id)
       >
         {{ props.todo.done ? "완료" : "진행중" }}
       </span>
-      <button
-        type="button"
-        class="rounded-md border border-neutral-800 bg-neutral-950 px-2 py-1 text-xs text-neutral-200"
-        @click="emit('remove', props.todo.id)"
+
+      <IconButton
+        ariaLabel="보관"
+        title="보관"
+        @click="emit('archive', props.todo.id)"
+        variant="archive"
       >
-        삭제
-      </button>
-    </div>
-  </li>
+        <ArchiveIcon />
+      </IconButton>
+    </template>
+  </TodoItemLayout>
 </template>

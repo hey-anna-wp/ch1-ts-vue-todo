@@ -1,0 +1,59 @@
+<script setup lang="ts">
+import type { Todo } from "@/types/todo"
+import IconButton from "@/components/ui/IconButton.vue"
+import TrashIcon from "@/assets/icons/trash.svg"
+import RestoreIcon from "@/assets/icons/restore.svg"
+import TodoItemLayout from "../common/TodoItemLayout.vue"
+
+const props = defineProps<{
+  todo: Todo
+  selected: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: "toggleSelect", id: Todo["id"]): void
+  (e: "restore", id: Todo["id"]): void
+  (e: "purge", id: Todo["id"]): void
+}>()
+</script>
+
+<template>
+  <TodoItemLayout :rightGap="false">
+    <template #left>
+      <button
+        type="button"
+        class="inline-flex h-5 w-5 items-center justify-center rounded border focus:ring-2 focus:ring-emerald-500/40 focus:outline-none"
+        :class="props.selected ? 'border-emerald-500 bg-emerald-500/20' : 'border-neutral-700'"
+        role="checkbox"
+        :aria-checked="props.selected"
+        @click="emit('toggleSelect', props.todo.id)"
+        @keydown.enter.prevent="emit('toggleSelect', props.todo.id)"
+        @keydown.space.prevent="emit('toggleSelect', props.todo.id)"
+      >
+        <span v-if="props.selected" class="text-xs text-emerald-400">✓</span>
+      </button>
+
+      <span class="truncate text-sm text-neutral-200">
+        {{ props.todo.title }}
+      </span>
+    </template>
+    <template #right>
+      <IconButton
+        ariaLabel="복구"
+        title="복구"
+        @click="emit('restore', props.todo.id)"
+        variant="restore"
+      >
+        <RestoreIcon />
+      </IconButton>
+      <IconButton
+        ariaLabel="영구 삭제"
+        title="영구 삭제"
+        @click="emit('purge', props.todo.id)"
+        variant="danger"
+      >
+        <TrashIcon class="h-6 w-6" />
+      </IconButton>
+    </template>
+  </TodoItemLayout>
+</template>

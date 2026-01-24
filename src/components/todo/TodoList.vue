@@ -1,43 +1,39 @@
 <script setup lang="ts">
-import TodoItem from "./TodoItem.vue"
-import type { Todo } from "@/types/todo"
 import TodoSummary from "./TodoSummary.vue"
 
-const { todos, doneCount, total } = defineProps<{
-  todos: Todo[]
-  doneCount: number
+const props = defineProps<{
+  doneCount?: number
   total: number
+  emptyText?: string
 }>()
-
-const emit = defineEmits<{
-  (e: "toggle", id: Todo["id"]): void
-  (e: "remove", id: Todo["id"]): void
-}>()
-
-const onRemove = (id: Todo["id"]) => emit("remove", id)
-const onToggle = (id: Todo["id"]) => emit("toggle", id)
 </script>
 
 <template>
   <section class="space-y-3">
-    <header class="flex items-end justify-between">
-      <h2 class="text-base font-semibold text-neutral-100">Todo</h2>
-      <TodoSummary :done-count="doneCount" :total="total" />
-    </header>
-    <ul class="space-y-2">
-      <TodoItem
-        v-for="todo in todos"
-        :key="todo.id"
-        :todo="todo"
-        @remove="onRemove"
-        @toggle="onToggle"
+    <header class="flex items-end justify-end">
+      <!-- 메인 화면: 할 일 완료/전체 개수 표시 -->
+      <TodoSummary
+        v-if="props.doneCount !== undefined"
+        :done-count="props.doneCount"
+        :total="props.total"
       />
+      <!-- 히스토리 화면: 전체 개수만 표시 -->
+      <span v-else class="text-sm text-neutral-400"
+        >전체 <span class="font-medium">{{ props.total }}</span>
+      </span>
+    </header>
+    <!-- sort / 선택삭제 타입 여기로 -->
+    <slot name="toolbar" />
+    <!-- 할 일 목록 -->
+    <ul v-if="props.total > 0" class="space-y-2">
+      <slot />
     </ul>
+
     <p
-      v-if="todos.length === 0"
+      v-else
       class="rounded-lg border border-neutral-800 bg-neutral-900 p-4 text-sm text-neutral-400"
     >
-      할 일이 없습니다.
+      {{ props.emptyText ?? "할 일이 없습니다." }}
     </p>
   </section>
 </template>
