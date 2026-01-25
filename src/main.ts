@@ -5,5 +5,6 @@ import router from "./router"
 
 import "./assets/base.css"
 import "./assets/tailwind.css"
+import "vue-sonner/style.css"
 
 createApp(App).use(router).mount("#app")

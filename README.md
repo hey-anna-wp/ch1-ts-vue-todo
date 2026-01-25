@@ -147,6 +147,9 @@ npm i -D prettier-plugin-tailwindcss
 
 # SVG를 Vue 컴포넌트로 사용하기 위한 Vite 플러그인
 npm i vite-svg-loader
+
+# Toast / Snackbar UI
+npm install vue-sonner
 ```
 
 ---

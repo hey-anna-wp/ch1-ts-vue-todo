@@ -2,6 +2,7 @@
 import PageHeader from "@/components/common/PageHeader.vue"
 import TodoListHistory from "@/components/todo/TodoListHistory.vue"
 import { useTodos } from "@/composables/useTodos"
+import { toast } from "vue-sonner"
 
 const { trashedTodos, restoreTodo, purgeTodo } = useTodos()
 
@@ -9,12 +10,14 @@ const purgeOne = (id: string) => {
   const ok = window.confirm("영구 삭제할까요? 복구할 수 없습니다.")
   if (!ok) return
   purgeTodo(id)
+  toast("할 일이 영구 삭제되었습니다")
 }
 
 const purgeMany = (ids: string[]) => {
   const ok = window.confirm(`선택 ${ids.length}개를 영구 삭제할까요? 복구할 수 없습니다.`)
   if (!ok) return
   ids.forEach((id) => purgeTodo(id))
+  toast(`${ids.length}개의 할 일이 삭제되었습니다`)
 }
 
 const purgeAll = () => {
@@ -23,6 +26,7 @@ const purgeAll = () => {
   if (!ok) return
 
   trashedTodos.value.forEach((t) => purgeTodo(t.id))
+  toast("모든 보관 항목이 삭제되었습니다")
 }
 </script>
 
