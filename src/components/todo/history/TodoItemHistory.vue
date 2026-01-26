@@ -3,8 +3,8 @@ import type { Todo } from "@/types/todo"
 import IconButton from "@/components/ui/IconButton.vue"
 import TrashIcon from "@/assets/icons/trash.svg"
 import RestoreIcon from "@/assets/icons/restore.svg"
-import TodoItemLayout from "../common/TodoItemLayout.vue"
-import TodoStatusBadge from "../common/TodoStatusBadge.vue"
+import TodoItemLayout from "@/components/todo/common/TodoItemLayout.vue"
+import TodoStatusBadge from "@/components/todo/common/TodoStatusBadge.vue"
 
 const props = defineProps<{
   todo: Todo

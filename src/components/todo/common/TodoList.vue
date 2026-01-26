@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TodoSummary from "./TodoSummary.vue"
+import TodoSummary from "@/components/todo/home/TodoSummary.vue"
 
 const props = defineProps<{
   doneCount?: number

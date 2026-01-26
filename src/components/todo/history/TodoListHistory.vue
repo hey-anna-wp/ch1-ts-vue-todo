@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue"
 import type { Todo } from "@/types/todo"
-import TodoList from "./TodoList.vue"
+import TodoList from "@/components/todo/common/TodoList.vue"
 import TodoItemHistory from "./TodoItemHistory.vue"
 import HistoryToolbar from "./HistoryToolbar.vue"
 

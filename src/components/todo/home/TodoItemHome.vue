@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Todo } from "@/types/todo"
-import TodoItemLayout from "../common/TodoItemLayout.vue"
-import TodoStatusBadge from "../common/TodoStatusBadge.vue"
+import TodoItemLayout from "@/components/todo/common/TodoItemLayout.vue"
+import TodoStatusBadge from "@/components/todo/common/TodoStatusBadge.vue"
 import IconButton from "@/components/ui/IconButton.vue"
 import ArchiveIcon from "@/assets/icons/archive.svg"
 import EditIcon from "@/assets/icons/edit.svg"

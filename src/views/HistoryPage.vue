@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PageHeader from "@/components/common/PageHeader.vue"
-import TodoListHistory from "@/components/todo/TodoListHistory.vue"
+import TodoListHistory from "@/components/todo/history/TodoListHistory.vue"
 import { useTodos } from "@/composables/useTodos"
 import { useConfirm } from "@/composables/useConfirm"
 import { MSG } from "@/constants/messages"

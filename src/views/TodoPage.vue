@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import PageHeader from "@/components/common/PageHeader.vue"
-import TodoAddForm from "@/components/todo/TodoAddForm.vue"
-import TodoAddButton from "@/components/todo/TodoAddButton.vue"
+import TodoAddForm from "@/components/todo/home/TodoAddForm.vue"
+import TodoAddButton from "@/components/todo/home/TodoAddButton.vue"
 import { useTodos } from "@/composables/useTodos"
-import TodoListHome from "@/components/todo/TodoListHome.vue"
+import TodoListHome from "@/components/todo/home/TodoListHome.vue"
 
 const { aliveTodos, doneCount, addTodo, toggleTodo, archiveTodo, editTodo } = useTodos()
 

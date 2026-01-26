@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Todo } from "@/types/todo"
-import TodoList from "./TodoList.vue"
+import TodoList from "@/components/todo/common/TodoList.vue"
 import TodoItemHome from "./TodoItemHome.vue"
 
 const props = defineProps<{
