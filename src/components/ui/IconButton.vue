@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from "vue"
+
 const props = withDefaults(
   defineProps<{
     ariaLabel: string
@@ -27,13 +29,15 @@ const variantClassMap = {
 } as const
 
 const base = "inline-flex items-center justify-center rounded-md transition "
-const sizeClass = props.size === "sm" ? "h-8 w-8" : "h-9 w-9"
+
 // const variantClass =
 //   props.variant === "danger"
 //     ? "text-neutral-500 hover:text-red-300 hover:bg-neutral-800/40"
 //     : "text-neutral-500 hover:text-neutral-200 hover:bg-neutral-800/40"
-const variantClass = variantClassMap[props.variant]
-const disabledClass = props.disabled ? "opacity-50 pointer-events-none" : ""
+
+const sizeClass = computed(() => (props.size === "sm" ? "h-8 w-8" : "h-9 w-9"))
+const variantClass = computed(() => variantClassMap[props.variant])
+const disabledClass = computed(() => (props.disabled ? "opacity-50 pointer-events-none" : ""))
 </script>
 
 <template>
