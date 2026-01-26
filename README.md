@@ -8,8 +8,13 @@ Vue 3 + TypeScript 기반 Todo 앱
 Vue 3 Composition API와 TypeScript를 활용해  
 **기본적인 Todo 앱을 단계적으로 설계·구현하는 개인 MVP 프로젝트**입니다.
 
+Router 기반 페이지 분리(Home / History),  
+localStorage 상태 유지,  
+Todo 보관·복구·영구 삭제 흐름을 중심으로  
+**상태 관리와 UI 역할 분리에 집중**했습니다.
+
 기능 단위 브랜치 전략을 사용하여  
-데이터 구조 → 렌더링 → 기능 추가 → UX 개선 순으로 점진적으로 확장했습니다.
+데이터 구조 → 렌더링 → 기능 추가 → UX 개선 순으로 점진적으로 확장 및 구현했습니다.
 
 ## Demo
 
@@ -21,6 +26,7 @@ Vue 3 Composition API와 TypeScript를 활용해
 - Vue 3 Composition API 흐름 익히기
 - TypeScript 기반 데이터 구조 설계 연습
 - 기능 단위 브랜치 분리 및 단계적 구현
+- Router 기반 페이지 분리 경험
 - Todo 앱 MVP 완주
 
 ## 기술 스택
@@ -45,17 +51,29 @@ Vue 3 Composition API와 TypeScript를 활용해
   - feat/8-persist-todo-localstorage
   - feat/9-fab-add-button
 
-## Features (Done)
+## Phase 1 – MVP (Done)
 
 - [x] Todo 추가 / 삭제
 - [x] 완료 여부 토글
 - [x] 완료 / 미완료 개수 표시
 - [x] Tailwind CSS 기반 UI 구성
 
-## Next (Planned)
+## Phase 2 – In Progress
 
 - [x] localStorage를 이용한 데이터 유지 (새로고침 유지)
-- [ ] Router 기반 신규 페이지 추가
+- [x] Router 기반 페이지 분리
+  - Home(`/`)
+  - History(`/history`)
+- [x] Todo 보관(archive) 기능
+  - 삭제 시 즉시 제거하지 않고 History로 이동
+- [x] Todo 복구(restore) 기능
+  - History → Home 복귀
+- [x] Todo 영구 삭제(purge) 기능
+  - 개별 삭제
+  - 선택 삭제
+  - 전체 삭제
+  - 삭제 시 confirm 처리
+
 - [ ] Header / Footer UI 보완 및 헤더 메뉴 추가
 - [ ] Todo 추가 버튼 UX 개선 (FAB 형태 고려)
 - [ ] Todo 리스트 UX 개선
