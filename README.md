@@ -63,7 +63,7 @@ Vue 3 Composition API와 TypeScript를 활용해
   - 전체 보기: hover/tooltip으로 전체 텍스트 확인
   - 입력 제한: 최대 50자
   - (선택) 정렬(최신순/오래된순)
-  - 항목이 많아질 경우 페이지네이션 또는 무한 스크롤(선택)
+  - 할 일이 많아질 경우 페이지네이션 또는 무한 스크롤(선택)
 - [ ] Todo 날짜 기능 추가
   - 날짜 선택 입력 (Date Picker)
   - 날짜(일자)별 컬러 마커 표시(팔레트 방식)
@@ -73,7 +73,7 @@ Vue 3 Composition API와 TypeScript를 활용해
 ### Home (Main)
 
 - 미완료/완료 Todo를 한 화면에서 관리
-- 완료된 항목은 목록에서 제거하지 않고 "완료" 상태로 표시
+- 완료된 할 일은 목록에서 제거하지 않고 "완료" 상태로 표시
 - Todo 날짜를 간략히 표시 (YYYY-MM-DD)
 - 제목이 길 경우: 한 줄 말줄임 + hover/tooltip로 전체 확인
 
@@ -90,7 +90,7 @@ Vue 3 Composition API와 TypeScript를 활용해
 - 삭제된 Todo를 모아보는 휴지통 페이지
 - 기능 범위:
   - 복구 (Rollback)
-  - 영구 삭제 (확인 후 진행)
+  - 삭제 (확인 후 진행)
 - 자동 삭제 정책은 이번 MVP 범위에서는 제외
 
 ## Folder Structure

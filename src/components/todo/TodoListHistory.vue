@@ -9,18 +9,20 @@ const props = defineProps<{ todos: Todo[] }>()
 const emit = defineEmits<{
   (e: "restore", id: Todo["id"]): void
   (e: "purge", id: Todo["id"]): void
-  (e: "purgeMany", ids: Todo["id"][]): void
-  (e: "purgeAll"): void
+  (e: "purge-many", ids: Todo["id"][]): void
+  (e: "purge-all"): void
 }>()
 
-const selectedIds = ref<Set<string>>(new Set())
+const selectedIds = ref<Set<Todo["id"]>>(new Set())
 
 watch(
   () => props.todos.map((t) => t.id),
-  (ids) => {
-    const next = new Set<string>()
+  (ids: Todo["id"][]) => {
+    const idSet = new Set<Todo["id"]>(ids)
+    const next = new Set<Todo["id"]>()
+
     for (const id of selectedIds.value) {
-      if (ids.includes(id)) next.add(id)
+      if (idSet.has(id)) next.add(id)
     }
     selectedIds.value = next
   },
@@ -30,7 +32,7 @@ const total = computed(() => props.todos.length)
 const selectedCount = computed(() => selectedIds.value.size)
 const allSelected = computed(() => total.value > 0 && selectedCount.value === total.value)
 
-const toggleSelect = (id: string) => {
+const toggleSelect = (id: Todo["id"]) => {
   const next = new Set(selectedIds.value)
   if (next.has(id)) next.delete(id)
   else next.add(id)
@@ -46,21 +48,21 @@ const toggleSelectAll = () => {
 }
 
 const purgeSelected = () => {
-  const ids = [...selectedIds.value]
+  const ids: Todo["id"][] = [...selectedIds.value]
   if (ids.length === 0) return
-  emit("purgeMany", ids)
+  emit("purge-many", ids)
   selectedIds.value = new Set()
 }
 
 const purgeAll = () => {
   if (total.value === 0) return
-  emit("purgeAll")
+  emit("purge-all")
   selectedIds.value = new Set()
 }
 </script>
 
 <template>
-  <TodoList :total="total" empty-text="보관된 항목이 없습니다.">
+  <TodoList :total="total" empty-text="보관된 할 일이 없습니다.">
     <template #toolbar>
       <HistoryToolbar
         :total="total"

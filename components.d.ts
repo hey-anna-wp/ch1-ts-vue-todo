@@ -12,6 +12,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AppHeader: typeof import('./src/components/common/AppHeader.vue')['default']
+    ConfirmModal: typeof import('./src/components/common/ConfirmModal.vue')['default']
     Container: typeof import('./src/components/common/Container.vue')['default']
     HistoryToolbar: typeof import('./src/components/todo/HistoryToolbar.vue')['default']
     IconButton: typeof import('./src/components/ui/IconButton.vue')['default']
@@ -20,7 +21,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     TodoAddButton: typeof import('./src/components/todo/TodoAddButton.vue')['default']
     TodoAddForm: typeof import('./src/components/todo/TodoAddForm.vue')['default']
-    TodoForm: typeof import('./src/components/todo/TodoForm.vue')['default']
     TodoItemHistory: typeof import('./src/components/todo/TodoItemHistory.vue')['default']
     TodoItemHome: typeof import('./src/components/todo/TodoItemHome.vue')['default']
     TodoItemLayout: typeof import('./src/components/common/TodoItemLayout.vue')['default']

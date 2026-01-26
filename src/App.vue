@@ -9,4 +9,5 @@ import { toasterOptions } from "@/styles/toaster"
     <RouterView />
   </BaseLayout>
   <Toaster position="bottom-right" close-button :toastOptions="toasterOptions" />
+  <ConfirmModal />
 </template>

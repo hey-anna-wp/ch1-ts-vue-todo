@@ -47,8 +47,8 @@ const emit = defineEmits<{
         <RestoreIcon />
       </IconButton>
       <IconButton
-        ariaLabel="영구 삭제"
-        title="영구 삭제"
+        ariaLabel="삭제"
+        title="삭제"
         @click="emit('purge', props.todo.id)"
         variant="danger"
       >

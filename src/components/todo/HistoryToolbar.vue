@@ -8,12 +8,20 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: "toggleSelectAll"): void
-  (e: "purgeSelected"): void
+  (e: "toggle-select-all"): void
+  (e: "purge-selected"): void
+  (e: "purge-all"): void
 }>()
 
-const onToggleSelectAll = () => emit("toggleSelectAll")
-const onPurgeSelected = () => emit("purgeSelected")
+const onToggleSelectAll = () => emit("toggle-select-all")
+const onPurgeSelected = () => emit("purge-selected")
+const onPurgeAll = () => emit("purge-all")
+
+const onClickDelete = () => {
+  if (props.selectedCount === 0) return
+  if (props.allSelected) onPurgeAll()
+  else onPurgeSelected()
+}
 </script>
 
 <template>
@@ -43,10 +51,10 @@ const onPurgeSelected = () => emit("purgeSelected")
           'text-neutral-500': selectedCount === 0,
         }"
         :disabled="selectedCount === 0"
-        @click="onPurgeSelected"
+        @click="onClickDelete"
       >
         <TrashIcon class="h-4 w-4" />
-        <span class="font-medium">삭제</span>
+        <span class="font-medium"> {{ allSelected ? "전체 삭제" : "선택 삭제" }}</span>
       </button>
     </div>
     <button type="button" class="text-neutral-300 hover:text-neutral-100">sort</button>

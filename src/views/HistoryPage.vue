@@ -2,31 +2,55 @@
 import PageHeader from "@/components/common/PageHeader.vue"
 import TodoListHistory from "@/components/todo/TodoListHistory.vue"
 import { useTodos } from "@/composables/useTodos"
+import { useConfirm } from "@/composables/useConfirm"
+import { MSG } from "@/constants/messages"
 import { toast } from "vue-sonner"
 
 const { trashedTodos, restoreTodo, purgeTodo } = useTodos()
+const { destructiveConfirm } = useConfirm()
 
-const purgeOne = (id: string) => {
-  const ok = window.confirm("영구 삭제할까요? 복구할 수 없습니다.")
+const purgeOne = async (id: string) => {
+  const ok = await destructiveConfirm({
+    title: MSG.confirm.purgeOneTitle,
+    // description: MSG.common.irreversible,
+    confirmText: MSG.action.delete,
+  })
   if (!ok) return
+
   purgeTodo(id)
-  toast("할 일이 영구 삭제되었습니다")
+  toast(MSG.toast.purgedOne)
 }
 
-const purgeMany = (ids: string[]) => {
-  const ok = window.confirm(`선택 ${ids.length}개를 영구 삭제할까요? 복구할 수 없습니다.`)
+const purgeMany = async (ids: string[]) => {
+  const ok = await destructiveConfirm({
+    title: MSG.confirm.purgeManyTitle(ids.length),
+    // description: MSG.common.irreversible,
+    confirmText: MSG.action.delete,
+  })
   if (!ok) return
-  ids.forEach((id) => purgeTodo(id))
-  toast(`${ids.length}개의 할 일이 삭제되었습니다`)
+
+  ids.forEach(purgeTodo)
+  toast(MSG.toast.purgedMany(ids.length))
 }
 
-const purgeAll = () => {
-  if (trashedTodos.value.length === 0) return
-  const ok = window.confirm(`보관된 항목 ${trashedTodos.value.length}개를 전부 영구 삭제할까요?`)
+const purgeAll = async () => {
+  const n = trashedTodos.value.length
+  if (n === 0) return
+
+  const ok = await destructiveConfirm({
+    title: MSG.confirm.purgeAllTitle(n),
+    // description: MSG.common.irreversible,
+    confirmText: MSG.action.deleteAll,
+  })
   if (!ok) return
 
   trashedTodos.value.forEach((t) => purgeTodo(t.id))
-  toast("모든 보관 항목이 삭제되었습니다")
+  toast(MSG.toast.purgedAll(n), { id: `purge-all-${n}` })
+}
+
+const onRestore = (id: string) => {
+  restoreTodo(id)
+  toast(MSG.toast.restored)
 }
 </script>
 
@@ -39,7 +63,7 @@ const purgeAll = () => {
 
     <TodoListHistory
       :todos="trashedTodos"
-      @restore="restoreTodo"
+      @restore="onRestore"
       @purge="purgeOne"
       @purge-many="purgeMany"
       @purge-all="purgeAll"
