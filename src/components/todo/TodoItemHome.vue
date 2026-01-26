@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Todo } from "@/types/todo"
 import TodoItemLayout from "../common/TodoItemLayout.vue"
+import TodoStatusBadge from "../common/TodoStatusBadge.vue"
 import IconButton from "@/components/ui/IconButton.vue"
 import ArchiveIcon from "@/assets/icons/archive.svg"
 import EditIcon from "@/assets/icons/edit.svg"
@@ -110,14 +111,7 @@ const onEditKeydown = (e: KeyboardEvent) => {
     </template>
 
     <template #right>
-      <span
-        class="shrink-0 rounded-full px-2 py-1 text-xs"
-        :class="
-          props.todo.done ? 'bg-emerald-500/15 text-emerald-300' : 'bg-amber-500/15 text-amber-300'
-        "
-      >
-        {{ props.todo.done ? "완료" : "진행중" }}
-      </span>
+      <TodoStatusBadge :done="props.todo.done" />
 
       <IconButton
         ariaLabel="수정"

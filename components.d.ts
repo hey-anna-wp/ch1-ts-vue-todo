@@ -27,6 +27,7 @@ declare module 'vue' {
     TodoList: typeof import('./src/components/todo/TodoList.vue')['default']
     TodoListHistory: typeof import('./src/components/todo/TodoListHistory.vue')['default']
     TodoListHome: typeof import('./src/components/todo/TodoListHome.vue')['default']
+    TodoStatusBadge: typeof import('./src/components/common/TodoStatusBadge.vue')['default']
     TodoSummary: typeof import('./src/components/todo/TodoSummary.vue')['default']
   }
 }

@@ -4,6 +4,7 @@ import IconButton from "@/components/ui/IconButton.vue"
 import TrashIcon from "@/assets/icons/trash.svg"
 import RestoreIcon from "@/assets/icons/restore.svg"
 import TodoItemLayout from "../common/TodoItemLayout.vue"
+import TodoStatusBadge from "../common/TodoStatusBadge.vue"
 
 const props = defineProps<{
   todo: Todo
@@ -33,11 +34,17 @@ const emit = defineEmits<{
         <span v-if="props.selected" class="text-xs text-red-300">✓</span>
       </button>
 
-      <span class="truncate text-sm text-neutral-200">
+      <span
+        class="truncate text-sm"
+        :class="props.todo.done ? 'text-neutral-400 line-through' : 'text-neutral-200'"
+      >
         {{ props.todo.title }}
       </span>
     </template>
+
     <template #right>
+      <TodoStatusBadge :done="props.todo.done" />
+
       <IconButton
         ariaLabel="복구"
         title="복구"
