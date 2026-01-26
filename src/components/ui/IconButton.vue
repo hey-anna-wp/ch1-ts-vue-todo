@@ -2,7 +2,7 @@
 const props = withDefaults(
   defineProps<{
     ariaLabel: string
-    variant?: "ghost" | "danger" | "archive" | "restore"
+    variant?: "ghost" | "danger" | "archive" | "restore" | "edit"
     size?: "sm" | "md"
     disabled?: boolean
     title?: string
@@ -23,7 +23,8 @@ const variantClassMap = {
   archive: "text-neutral-500 hover:text-amber-300 hover:bg-neutral-800/40",
   restore: "text-neutral-500 hover:text-emerald-300 hover:bg-neutral-800/40",
   danger: "text-neutral-500 hover:text-red-300 hover:bg-neutral-800/40",
-}
+  edit: "text-neutral-500 hover:text-sky-300 hover:bg-neutral-800/40",
+} as const
 
 const base = "inline-flex items-center justify-center rounded-md transition "
 const sizeClass = props.size === "sm" ? "h-8 w-8" : "h-9 w-9"

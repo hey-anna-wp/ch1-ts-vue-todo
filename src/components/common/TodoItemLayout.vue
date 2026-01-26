@@ -14,7 +14,7 @@ const props = withDefaults(
     class="flex items-center justify-between gap-3 rounded-lg border border-neutral-800 bg-neutral-900 px-4 pt-2 pb-1.5"
   >
     <!-- left 영역 -->
-    <div class="flex min-w-0 items-center gap-3">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
       <slot name="left" />
     </div>
 

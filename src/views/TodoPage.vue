@@ -6,7 +6,7 @@ import TodoAddButton from "@/components/todo/TodoAddButton.vue"
 import { useTodos } from "@/composables/useTodos"
 import TodoListHome from "@/components/todo/TodoListHome.vue"
 
-const { aliveTodos, doneCount, addTodo, toggleTodo, archiveTodo } = useTodos()
+const { aliveTodos, doneCount, addTodo, toggleTodo, archiveTodo, editTodo } = useTodos()
 
 // ui state
 const isFormOpen = ref(false)
@@ -31,6 +31,7 @@ const handleSubmit = (title: string) => {
       :total="aliveTodos.length"
       @toggle-done="toggleTodo"
       @archive="archiveTodo"
+      @edit="editTodo"
     />
   </div>
 </template>

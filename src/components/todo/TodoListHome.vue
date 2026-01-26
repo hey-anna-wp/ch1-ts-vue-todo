@@ -12,6 +12,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: "toggle-done", id: Todo["id"]): void
   (e: "archive", id: Todo["id"]): void
+  (e: "edit", payload: { id: Todo["id"]; title: string }): void
 }>()
 </script>
 
@@ -23,6 +24,7 @@ const emit = defineEmits<{
       :todo="todo"
       @toggle-done="emit('toggle-done', $event)"
       @archive="emit('archive', $event)"
+      @edit="emit('edit', $event)"
     />
   </TodoList>
 </template>

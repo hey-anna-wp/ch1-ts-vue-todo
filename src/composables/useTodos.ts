@@ -53,7 +53,7 @@ watch(todos, (next) => saveTodos(next), { deep: true, flush: "post" })
 // ===== Utils =====
 const nextId = () => {
   const c = globalThis.crypto
-  return c?.randomUUID ? c.randomUUID() : `id-${Date.now()}-${Math.random()}`
+  return c?.randomUUID ? c.randomUUID() : `id-${Date.now()}-${Math.random().toString(16).slice(2)}`
 }
 const now = () => Date.now()
 
@@ -92,6 +92,17 @@ export const useTodos = () => {
     todos.value = todos.value.map((t) => (t.id === id ? { ...t, done: !t.done, updatedAt: ts } : t))
   }
 
+  // 수정 (Home에서 사용)
+  const editTodo = (payload: { id: Todo["id"]; title: string }) => {
+    const trimmed = payload.title.trim()
+    if (!trimmed) return
+
+    const ts = now()
+    todos.value = todos.value.map((t) =>
+      t.id === payload.id ? { ...t, title: trimmed, updatedAt: ts } : t,
+    )
+  }
+
   // Home → History (보관)
   const archiveTodo = (id: Todo["id"]) => {
     const ts = now()
@@ -123,6 +134,7 @@ export const useTodos = () => {
     // actions
     addTodo,
     toggleTodo,
+    editTodo,
     archiveTodo, // Home → History
     restoreTodo, // History → Home
     purgeTodo, // History → 완전 삭제
