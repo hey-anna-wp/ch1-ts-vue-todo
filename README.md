@@ -18,7 +18,7 @@ Todo 보관·복구·영구 삭제 흐름을 중심으로
 
 ## Demo
 
-- Live: https://ch1-ts-vue-todo.vercel.app
+- Live: [https://ch1-ts-vue-todo.vercel.app](https://ch1-ts-vue-todo.vercel.app)
 - Preview: (GIF / 스크린샷 추가 예정)
 
 ## Project Goal

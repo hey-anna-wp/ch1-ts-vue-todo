@@ -44,7 +44,8 @@ const purgeAll = async () => {
   })
   if (!ok) return
 
-  trashedTodos.value.forEach((t) => purgeTodo(t.id))
+  const ids = trashedTodos.value.map((t) => t.id)
+  ids.forEach(purgeTodo)
   toast(MSG.toast.purgedAll(n), { id: `purge-all-${n}` })
 }
 

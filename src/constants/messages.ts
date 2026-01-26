@@ -13,6 +13,9 @@ export const MSG = {
     purgeManyTitle: (n: number) => `선택 ${n}개를 정말 삭제하시겠습니까?`,
     purgeAllTitle: (n: number) => `보관된 할 일 ${n}개를 전부 삭제하시겠습니까?`,
   },
+  aria: {
+    toggleDone: (title: string) => `할 일 완료 상태 변경: ${title}`,
+  },
   toast: {
     purgedOne: "할 일이 삭제되었습니다",
     purgedMany: (n: number) => `${n}개의 할 일이 삭제되었습니다`,

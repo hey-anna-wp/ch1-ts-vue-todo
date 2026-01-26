@@ -22,6 +22,11 @@ const payload = ref<ConfirmPayload>({
 let resolver: ((value: boolean) => void) | null = null
 
 const confirm = (next: ConfirmPayload) => {
+  // 이미 대기 중인 confirm이 있으면 취소(false)로 정리해서 dangling Promise를 방지
+  if (resolver) {
+    resolver(false)
+    resolver = null
+  }
   payload.value = {
     title: next.title,
     description: next.description ?? "",

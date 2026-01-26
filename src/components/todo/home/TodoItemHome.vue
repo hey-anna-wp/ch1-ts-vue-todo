@@ -6,6 +6,7 @@ import IconButton from "@/components/ui/IconButton.vue"
 import ArchiveIcon from "@/assets/icons/archive.svg"
 import EditIcon from "@/assets/icons/edit.svg"
 import { nextTick, ref, watch } from "vue"
+import { MSG } from "@/constants/messages"
 
 const props = defineProps<{ todo: Todo }>()
 
@@ -21,6 +22,7 @@ const onToggle = () => emit("toggle-done", props.todo.id)
 const isEditing = ref(false)
 const editTitle = ref(props.todo.title)
 const inputRef = ref<HTMLInputElement | null>(null)
+const isSubmitting = ref(false)
 
 watch(
   () => props.todo.title,
@@ -43,19 +45,25 @@ const cancelEdit = () => {
 }
 
 const submitEdit = () => {
+  if (isSubmitting.value) return
+  isSubmitting.value = true
+
   const trimmed = editTitle.value.trim()
   if (!trimmed) {
     cancelEdit()
+    isSubmitting.value = false
     return
   }
 
   if (trimmed === props.todo.title) {
     isEditing.value = false
+    isSubmitting.value = false
     return
   }
 
   emit("edit", { id: props.todo.id, title: trimmed })
   isEditing.value = false
+  isSubmitting.value = false
 }
 
 const onEditKeydown = (e: KeyboardEvent) => {
@@ -78,6 +86,7 @@ const onEditKeydown = (e: KeyboardEvent) => {
         :class="props.todo.done ? 'border-emerald-500 bg-emerald-500/20' : 'border-neutral-700'"
         role="checkbox"
         :aria-checked="props.todo.done"
+        :aria-label="MSG.aria.toggleDone(props.todo.title)"
         @click="onToggle"
         @keydown.enter.prevent="onToggle"
         @keydown.space.prevent="onToggle"
