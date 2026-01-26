@@ -11,16 +11,23 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppHeader: typeof import('./src/components/AppHeader.vue')['default']
+    AppHeader: typeof import('./src/components/common/AppHeader.vue')['default']
+    ConfirmModal: typeof import('./src/components/common/ConfirmModal.vue')['default']
     Container: typeof import('./src/components/common/Container.vue')['default']
+    HistoryToolbar: typeof import('./src/components/todo/history/HistoryToolbar.vue')['default']
+    IconButton: typeof import('./src/components/ui/IconButton.vue')['default']
     PageHeader: typeof import('./src/components/common/PageHeader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TodoAddButton: typeof import('./src/components/todo/TodoAddButton.vue')['default']
-    TodoAddForm: typeof import('./src/components/todo/TodoAddForm.vue')['default']
-    TodoForm: typeof import('./src/components/todo/TodoForm.vue')['default']
-    TodoItem: typeof import('./src/components/todo/TodoItem.vue')['default']
-    TodoList: typeof import('./src/components/todo/TodoList.vue')['default']
-    TodoSummary: typeof import('./src/components/todo/TodoSummary.vue')['default']
+    TodoAddButton: typeof import('./src/components/todo/home/TodoAddButton.vue')['default']
+    TodoAddForm: typeof import('./src/components/todo/home/TodoAddForm.vue')['default']
+    TodoItemHistory: typeof import('./src/components/todo/history/TodoItemHistory.vue')['default']
+    TodoItemHome: typeof import('./src/components/todo/home/TodoItemHome.vue')['default']
+    TodoItemLayout: typeof import('./src/components/todo/common/TodoItemLayout.vue')['default']
+    TodoList: typeof import('./src/components/todo/common/TodoList.vue')['default']
+    TodoListHistory: typeof import('./src/components/todo/history/TodoListHistory.vue')['default']
+    TodoListHome: typeof import('./src/components/todo/home/TodoListHome.vue')['default']
+    TodoStatusBadge: typeof import('./src/components/todo/common/TodoStatusBadge.vue')['default']
+    TodoSummary: typeof import('./src/components/todo/home/TodoSummary.vue')['default']
   }
 }
