@@ -7,11 +7,11 @@ import ArchiveIcon from "@/assets/icons/archive.svg"
 const props = defineProps<{ todo: Todo }>()
 
 const emit = defineEmits<{
-  (e: "toggleDone", id: Todo["id"]): void
+  (e: "toggle-done", id: Todo["id"]): void
   (e: "archive", id: Todo["id"]): void
 }>()
 
-const onToggle = () => emit("toggleDone", props.todo.id)
+const onToggle = () => emit("toggle-done", props.todo.id)
 </script>
 
 <template>

@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 const emit = defineEmits<{
   (e: "cancel"): void
   (e: "submit", title: string): void
 }>()
 
 const title = ref("")
+const inputRef = ref<HTMLInputElement | null>(null)
+
+onMounted(() => {
+  inputRef.value?.focus()
+})
 
 const onSubmit = () => {
   const trimmed = title.value.trim()
@@ -26,6 +31,7 @@ const onCancel = () => {
     @submit.prevent="onSubmit"
   >
     <input
+      ref="inputRef"
       v-model="title"
       type="text"
       placeholder="할 일을 입력하세요"

@@ -10,7 +10,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: "toggleDone", id: Todo["id"]): void
+  (e: "toggle-done", id: Todo["id"]): void
   (e: "archive", id: Todo["id"]): void
 }>()
 </script>
@@ -21,7 +21,7 @@ const emit = defineEmits<{
       v-for="todo in props.todos"
       :key="todo.id"
       :todo="todo"
-      @toggle-done="emit('toggleDone', $event)"
+      @toggle-done="emit('toggle-done', $event)"
       @archive="emit('archive', $event)"
     />
   </TodoList>
