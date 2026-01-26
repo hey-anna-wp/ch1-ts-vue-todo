@@ -43,11 +43,11 @@ onBeforeUnmount(() => window.removeEventListener("keydown", onKeydown))
           aria-modal="true"
           class="w-full max-w-sm rounded-2xl border border-neutral-800/60 bg-neutral-900 p-5 shadow-2xl"
         >
-          <h2 class="text-base font-semibold text-neutral-100">
+          <h2 class="text-base font-semibold text-neutral-50">
             {{ payload.title }}
           </h2>
 
-          <p v-if="payload.description" class="mt-2 text-sm leading-6 text-neutral-300">
+          <p v-if="payload.description" class="mt-2 text-sm leading-6 text-neutral-200">
             {{ payload.description }}
           </p>
 

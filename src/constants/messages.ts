@@ -9,14 +9,14 @@ export const MSG = {
     deleteAll: "전체 삭제",
   },
   confirm: {
-    purgeOneTitle: "삭제할까요?",
-    purgeManyTitle: (n: number) => `선택 ${n}개를 삭제할까요?`,
-    purgeAllTitle: (n: number) => `보관된 할 일 ${n}개를 전부 삭제할까요?`,
+    purgeOneTitle: "정말 삭제하시겠습니까?",
+    purgeManyTitle: (n: number) => `선택 ${n}개를 정말 삭제하시겠습니까?`,
+    purgeAllTitle: (n: number) => `보관된 할 일 ${n}개를 전부 삭제하시겠습니까?`,
   },
   toast: {
     purgedOne: "할 일이 삭제되었습니다",
     purgedMany: (n: number) => `${n}개의 할 일이 삭제되었습니다`,
-    purgedAll: (n: number) => `${n}개의 모든 보관 할 일이 삭제되었습니다`,
+    purgedAll: (n: number) => `${n}개가 모두 삭제되었습니다`,
     restored: "할 일이 복구되었습니다",
   },
 } as const
