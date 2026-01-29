@@ -79,6 +79,9 @@ const onEditKeydown = (e: KeyboardEvent) => {
 
 <template>
   <TodoItemLayout :rightGap="false">
+    <template #marker>
+      <TodoMarker :dateKey="props.todo.dateKey" />
+    </template>
     <template #left>
       <button
         type="button"
@@ -93,6 +96,7 @@ const onEditKeydown = (e: KeyboardEvent) => {
       >
         <span v-if="props.todo.done" class="text-xs text-emerald-400">✓</span>
       </button>
+      <TodoDateLabel :dateKey="props.todo.dateKey" />
       <!-- title / edit input -->
       <div class="min-w-0 flex-1">
         <input
