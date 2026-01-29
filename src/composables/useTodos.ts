@@ -35,7 +35,10 @@ const loadTodos = (): Todo[] => {
 
     const patched: Todo[] = filtered.map((t) => ({
       ...t,
-      dateKey: typeof t.dateKey === "string" && t.dateKey.trim() ? t.dateKey : toDateKey(),
+      dateKey:
+        typeof t.dateKey === "string" && t.dateKey.trim()
+          ? t.dateKey
+          : toDateKey(new Date(t.createdAt)),
     }))
 
     return patched.length ? patched : FALLBACK_TODOS
