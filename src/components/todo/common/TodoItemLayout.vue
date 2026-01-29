@@ -11,8 +11,9 @@ const props = withDefaults(
 
 <template>
   <li
-    class="flex items-center justify-between gap-3 rounded-lg border border-neutral-800 bg-neutral-900 px-4 pt-2 pb-1.5"
+    class="relative flex items-center justify-between gap-3 overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900 px-4 pt-2 pb-1.5"
   >
+    <slot name="marker" />
     <!-- left 영역 -->
     <div class="flex min-w-0 flex-1 items-center gap-3">
       <slot name="left" />

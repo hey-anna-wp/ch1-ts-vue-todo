@@ -20,6 +20,9 @@ const emit = defineEmits<{
 
 <template>
   <TodoItemLayout :rightGap="false">
+    <template #marker>
+      <TodoMarker :dateKey="props.todo.dateKey" />
+    </template>
     <template #left>
       <button
         type="button"
@@ -33,6 +36,7 @@ const emit = defineEmits<{
       >
         <span v-if="props.selected" class="text-xs text-red-300">✓</span>
       </button>
+      <TodoDateLabel :dateKey="props.todo.dateKey" />
 
       <span
         class="truncate text-sm"

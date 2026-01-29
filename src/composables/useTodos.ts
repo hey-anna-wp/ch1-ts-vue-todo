@@ -1,12 +1,15 @@
 import { computed, ref, watch } from "vue"
-import type { Todo } from "@/types/todo"
+import type { Todo, AddTodoPayload } from "@/types/todo"
+import { toDateKey } from "@/utils/dateKey"
 
 // ===== Persistence (localStorage) =====
 const STORAGE_KEY = "vue-todo:v1"
 const FALLBACK_TODOS: Todo[] = []
 
+type StoredTodo = Omit<Todo, "dateKey"> & Partial<Pick<Todo, "dateKey">>
+
 // type guard: localStorage 데이터가 Todo 형태인지 구조 검증
-const isTodo = (v: unknown): v is Todo => {
+const isTodo = (v: unknown): v is StoredTodo => {
   if (typeof v !== "object" || v === null) return false
 
   const t = v as Record<string, unknown>
@@ -29,7 +32,16 @@ const loadTodos = (): Todo[] => {
     if (!Array.isArray(parsed)) return FALLBACK_TODOS
 
     const filtered = parsed.filter(isTodo)
-    return filtered.length ? filtered : FALLBACK_TODOS
+
+    const patched: Todo[] = filtered.map((t) => ({
+      ...t,
+      dateKey:
+        typeof t.dateKey === "string" && t.dateKey.trim()
+          ? t.dateKey
+          : toDateKey(new Date(t.createdAt)),
+    }))
+
+    return patched.length ? patched : FALLBACK_TODOS
   } catch (e) {
     console.warn("[todo] failed to load from localStorage:", e)
     return FALLBACK_TODOS
@@ -61,7 +73,15 @@ const now = () => Date.now()
 // Todo 상태와 로직을 제공하는 전역 composable
 export const useTodos = () => {
   // Home에 표시되는 Todo
-  const aliveTodos = computed(() => todos.value.filter((t) => t.deletedAt === null))
+  const aliveTodos = computed(() =>
+    todos.value
+      .filter((t) => t.deletedAt === null)
+      .slice()
+      .sort((a, b) => {
+        if (a.dateKey !== b.dateKey) return a.dateKey < b.dateKey ? 1 : -1
+        return b.createdAt - a.createdAt
+      }),
+  )
 
   // History에 표시되는 Todo
   const trashedTodos = computed(() => todos.value.filter((t) => t.deletedAt !== null))
@@ -70,8 +90,8 @@ export const useTodos = () => {
   const doneCount = computed(() => aliveTodos.value.filter((t) => t.done).length)
 
   // Todo 추가
-  const addTodo = (title: string) => {
-    const trimmed = title.trim()
+  const addTodo = (payload: AddTodoPayload) => {
+    const trimmed = payload.title.trim()
     if (!trimmed) return
 
     const ts = now()
@@ -82,6 +102,7 @@ export const useTodos = () => {
       createdAt: ts,
       updatedAt: ts,
       deletedAt: null,
+      dateKey: payload.dateKey,
     }
     todos.value = [newTodo, ...todos.value]
   }

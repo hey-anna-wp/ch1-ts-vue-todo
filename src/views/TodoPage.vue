@@ -5,6 +5,7 @@ import TodoAddForm from "@/components/todo/home/TodoAddForm.vue"
 import TodoAddButton from "@/components/todo/home/TodoAddButton.vue"
 import { useTodos } from "@/composables/useTodos"
 import TodoListHome from "@/components/todo/home/TodoListHome.vue"
+import type { AddTodoPayload } from "@/types/todo"
 
 const { aliveTodos, doneCount, addTodo, toggleTodo, archiveTodo, editTodo } = useTodos()
 
@@ -13,8 +14,8 @@ const isFormOpen = ref(false)
 const openForm = () => (isFormOpen.value = true)
 const closeForm = () => (isFormOpen.value = false)
 
-const handleSubmit = (title: string) => {
-  addTodo(title)
+const handleSubmit = (payload: AddTodoPayload): void => {
+  addTodo(payload)
   closeForm()
 }
 </script>

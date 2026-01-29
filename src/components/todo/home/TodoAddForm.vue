@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
+import type { AddTodoPayload } from "@/types/todo"
+import { toDateKey } from "@/utils/dateKey"
+
 const emit = defineEmits<{
   (e: "cancel"): void
-  (e: "submit", title: string): void
+  (e: "submit", payload: AddTodoPayload): void
 }>()
 
 const title = ref("")
@@ -15,7 +18,7 @@ onMounted(() => {
 const onSubmit = () => {
   const trimmed = title.value.trim()
   if (!trimmed) return
-  emit("submit", trimmed)
+  emit("submit", { title: trimmed, dateKey: toDateKey() })
   title.value = ""
 }
 
