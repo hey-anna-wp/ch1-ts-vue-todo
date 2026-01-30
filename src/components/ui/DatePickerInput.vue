@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue"
+import { computed, ref, onMounted } from "vue"
 import { toDateKey } from "@/utils/dateKey"
 import CalendarIcon from "@/assets/icons/calendar.svg"
 
@@ -48,6 +48,11 @@ const props = withDefaults(
 const emit = defineEmits<{
   (e: "update:modelValue", v: string): void
 }>()
+
+onMounted(() => {
+  const v = (props.modelValue || "").trim()
+  if (!v && props.defaultToday) emit("update:modelValue", toDateKey())
+})
 
 const value = computed({
   get() {
