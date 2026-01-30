@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue"
 import type { AddTodoPayload } from "@/types/todo"
 import { toDateKey } from "@/utils/dateKey"
+import DatePickerInput from "@/components/ui/DatePickerInput.vue"
 
 const emit = defineEmits<{
   (e: "cancel"): void
@@ -9,6 +10,7 @@ const emit = defineEmits<{
 }>()
 
 const title = ref("")
+const dateKey = ref<string>(toDateKey())
 const inputRef = ref<HTMLInputElement | null>(null)
 
 onMounted(() => {
@@ -18,7 +20,7 @@ onMounted(() => {
 const onSubmit = () => {
   const trimmed = title.value.trim()
   if (!trimmed) return
-  emit("submit", { title: trimmed, dateKey: toDateKey() })
+  emit("submit", { title: trimmed, dateKey: dateKey.value })
   title.value = ""
 }
 
@@ -30,9 +32,10 @@ const onCancel = () => {
 
 <template>
   <form
-    class="flex w-full items-center gap-2 rounded-lg border border-neutral-800 bg-neutral-900 p-2"
+    class="flex w-full flex-col gap-2 rounded-lg border border-neutral-800 bg-neutral-900 p-2 sm:flex-row sm:items-center"
     @submit.prevent="onSubmit"
   >
+    <DatePickerInput v-model="dateKey" size="sm" input-class="focus:ring-emerald-500/40" />
     <input
       ref="inputRef"
       v-model="title"

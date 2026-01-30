@@ -14,6 +14,7 @@ declare module 'vue' {
     AppHeader: typeof import('./src/components/common/AppHeader.vue')['default']
     ConfirmModal: typeof import('./src/components/common/ConfirmModal.vue')['default']
     Container: typeof import('./src/components/common/Container.vue')['default']
+    DatePickerInput: typeof import('./src/components/ui/DatePickerInput.vue')['default']
     HistoryToolbar: typeof import('./src/components/todo/history/HistoryToolbar.vue')['default']
     IconButton: typeof import('./src/components/ui/IconButton.vue')['default']
     PageHeader: typeof import('./src/components/common/PageHeader.vue')['default']
