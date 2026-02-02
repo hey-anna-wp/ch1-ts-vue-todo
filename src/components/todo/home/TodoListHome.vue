@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Todo } from "@/types/todo"
+import type { EditTodoPayload, Todo } from "@/types/todo"
 import TodoList from "@/components/todo/common/TodoList.vue"
 import TodoItemHome from "./TodoItemHome.vue"
 
@@ -12,7 +12,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: "toggle-done", id: Todo["id"]): void
   (e: "archive", id: Todo["id"]): void
-  (e: "edit", payload: { id: Todo["id"]; title: string }): void
+  (e: "edit", payload: EditTodoPayload): void
 }>()
 </script>
 

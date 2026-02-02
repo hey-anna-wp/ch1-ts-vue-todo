@@ -12,3 +12,9 @@ export type AddTodoPayload = {
   title: string
   dateKey: string
 }
+
+export type EditTodoPayload = {
+  id: Todo["id"]
+  title: string
+  dateKey: string
+}

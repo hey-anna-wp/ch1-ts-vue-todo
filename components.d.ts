@@ -23,6 +23,7 @@ declare module 'vue' {
     TodoAddButton: typeof import('./src/components/todo/home/TodoAddButton.vue')['default']
     TodoAddForm: typeof import('./src/components/todo/home/TodoAddForm.vue')['default']
     TodoDateLabel: typeof import('./src/components/todo/common/TodoDateLabel.vue')['default']
+    TodoInlineEditor: typeof import('./src/components/todo/home/TodoInlineEditor.vue')['default']
     TodoItemHistory: typeof import('./src/components/todo/history/TodoItemHistory.vue')['default']
     TodoItemHome: typeof import('./src/components/todo/home/TodoItemHome.vue')['default']
     TodoItemLayout: typeof import('./src/components/todo/common/TodoItemLayout.vue')['default']
