@@ -1,5 +1,5 @@
 import { computed, ref, watch } from "vue"
-import type { Todo, AddTodoPayload } from "@/types/todo"
+import type { Todo, AddTodoPayload, EditTodoPayload } from "@/types/todo"
 import { toDateKey } from "@/utils/dateKey"
 
 // ===== Persistence (localStorage) =====
@@ -8,10 +8,8 @@ const FALLBACK_TODOS: Todo[] = []
 
 type StoredTodo = Omit<Todo, "dateKey"> & Partial<Pick<Todo, "dateKey">>
 
-// type guard: localStorage 데이터가 Todo 형태인지 구조 검증
 const isTodo = (v: unknown): v is StoredTodo => {
   if (typeof v !== "object" || v === null) return false
-
   const t = v as Record<string, unknown>
   return (
     typeof t.id === "string" &&
@@ -60,7 +58,7 @@ const saveTodos = (next: Todo[]) => {
 const todos = ref<Todo[]>(loadTodos())
 
 // todos 변경 시 자동 저장
-watch(todos, (next) => saveTodos(next), { deep: true, flush: "post" })
+watch(todos, (next) => saveTodos(next), { flush: "post" })
 
 // ===== Utils =====
 const nextId = () => {
@@ -113,14 +111,20 @@ export const useTodos = () => {
     todos.value = todos.value.map((t) => (t.id === id ? { ...t, done: !t.done, updatedAt: ts } : t))
   }
 
-  // 수정 (Home에서 사용)
-  const editTodo = (payload: { id: Todo["id"]; title: string }) => {
-    const trimmed = payload.title.trim()
+  const editTodo = ({ id, title, dateKey }: EditTodoPayload) => {
+    const trimmed = title.trim()
     if (!trimmed) return
 
     const ts = now()
     todos.value = todos.value.map((t) =>
-      t.id === payload.id ? { ...t, title: trimmed, updatedAt: ts } : t,
+      t.id === id
+        ? {
+            ...t,
+            title: trimmed,
+            dateKey,
+            updatedAt: ts,
+          }
+        : t,
     )
   }
 
