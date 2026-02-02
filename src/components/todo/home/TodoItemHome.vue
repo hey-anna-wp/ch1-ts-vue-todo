@@ -66,7 +66,7 @@ const onOutsideSave = () => {
       </button>
 
       <!-- 편집 모드일 때: overlay + editor -->
-      <div v-if="isEditing" class="relative">
+      <div v-if="isEditing" class="relative min-w-0 flex-1">
         <button
           type="button"
           class="fixed inset-0 z-9998 cursor-default"
