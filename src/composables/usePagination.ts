@@ -31,7 +31,7 @@ export function usePagination<T>(
   items: ListSource<T>,
   options: UsePaginationOptions = {},
 ): UsePaginationReturn<T> {
-  const pageSize = ref(options.pageSize ?? 10)
+  const pageSize = ref(Math.max(1, options.pageSize ?? 10))
   const currentPage = ref(1)
 
   const total = computed(() => unref(items).length)
