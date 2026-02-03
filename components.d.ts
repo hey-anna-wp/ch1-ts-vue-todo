@@ -20,6 +20,7 @@ declare module 'vue' {
     PageHeader: typeof import('./src/components/common/PageHeader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SortToggle: typeof import('./src/components/todo/common/SortToggle.vue')['default']
     TodoAddButton: typeof import('./src/components/todo/home/TodoAddButton.vue')['default']
     TodoAddForm: typeof import('./src/components/todo/home/TodoAddForm.vue')['default']
     TodoDateLabel: typeof import('./src/components/todo/common/TodoDateLabel.vue')['default']

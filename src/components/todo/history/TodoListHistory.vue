@@ -2,8 +2,10 @@
 import { computed, ref, watch } from "vue"
 import type { Todo } from "@/types/todo"
 import TodoList from "@/components/todo/common/TodoList.vue"
-import TodoItemHistory from "./TodoItemHistory.vue"
 import HistoryToolbar from "./HistoryToolbar.vue"
+import TodoItemHistory from "./TodoItemHistory.vue"
+import { useSortOrder } from "@/composables/useSortOrder"
+import { sortTodos } from "@/utils/sortTodos"
 
 const props = defineProps<{ todos: Todo[] }>()
 const emit = defineEmits<{
@@ -12,6 +14,9 @@ const emit = defineEmits<{
   (e: "purge-many", ids: Todo["id"][]): void
   (e: "purge-all"): void
 }>()
+
+const { sortOrder, toggleSortOrder } = useSortOrder("desc")
+const sortedTodos = computed(() => sortTodos(props.todos, sortOrder.value))
 
 const selectedIds = ref<Set<Todo["id"]>>(new Set())
 
@@ -62,7 +67,12 @@ const purgeAll = () => {
 </script>
 
 <template>
-  <TodoList :total="total" empty-text="보관된 할 일이 없습니다.">
+  <TodoList
+    :total="total"
+    empty-text="보관된 할 일이 없습니다."
+    :sort-order="sortOrder"
+    @toggle-sort="toggleSortOrder"
+  >
     <template #toolbar>
       <HistoryToolbar
         :total="total"
@@ -75,7 +85,7 @@ const purgeAll = () => {
     </template>
 
     <TodoItemHistory
-      v-for="todo in props.todos"
+      v-for="todo in sortedTodos"
       :key="todo.id"
       :todo="todo"
       :selected="selectedIds.has(todo.id)"

@@ -57,6 +57,5 @@ const onClickDelete = () => {
         <span class="font-medium"> {{ allSelected ? "전체 삭제" : "선택 삭제" }}</span>
       </button>
     </div>
-    <button type="button" class="text-neutral-300 hover:text-neutral-100">sort</button>
   </div>
 </template>
