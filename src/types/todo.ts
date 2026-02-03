@@ -18,3 +18,5 @@ export type EditTodoPayload = {
   title: string
   dateKey: string
 }
+
+export type SortOrder = "asc" | "desc"

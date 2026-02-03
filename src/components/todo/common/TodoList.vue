@@ -1,31 +1,41 @@
 <script setup lang="ts">
 import TodoSummary from "@/components/todo/home/TodoSummary.vue"
+import SortToggle from "@/components/todo/common/SortToggle.vue"
+import type { SortOrder } from "@/types/todo"
 
-const props = defineProps<{
-  doneCount?: number
-  total: number
-  emptyText?: string
+const props = withDefaults(
+  defineProps<{
+    doneCount?: number
+    total: number
+    emptyText?: string
+    sortOrder?: SortOrder
+  }>(),
+  {
+    emptyText: "할 일이 없습니다.",
+  },
+)
+
+const emit = defineEmits<{
+  (e: "toggle-sort"): void
 }>()
 </script>
 
 <template>
   <section class="space-y-3">
-    <header class="flex items-end justify-end">
-      <!-- 메인 화면: 할 일 완료/전체 개수 표시 -->
-      <TodoSummary
-        v-if="props.doneCount !== undefined"
-        :done-count="props.doneCount"
-        :total="props.total"
-      />
-      <!-- 히스토리 화면: 전체 개수만 표시 -->
-      <span v-else class="text-sm text-neutral-400"
-        >전체 <span class="font-medium">{{ props.total }}</span>
-      </span>
+    <header class="flex min-h-7 justify-between">
+      <!-- left -->
+      <div class="flex min-w-0 items-center gap-2">
+        <slot name="toolbar" />
+      </div>
+      <!-- right -->
+      <div class="flex shrink-0 items-center gap-3">
+        <SortToggle v-if="sortOrder" :order="sortOrder" @toggle="emit('toggle-sort')" />
+        <TodoSummary :done-count="doneCount" :total="total" />
+      </div>
     </header>
-    <!-- sort / 선택삭제 타입 여기로 -->
-    <slot name="toolbar" />
-    <!-- 할 일 목록 -->
-    <ul v-if="props.total > 0" class="space-y-2">
+
+    <!-- list -->
+    <ul v-if="total > 0" class="space-y-2">
       <slot />
     </ul>
 
@@ -33,7 +43,7 @@ const props = defineProps<{
       v-else
       class="rounded-lg border border-neutral-800 bg-neutral-900 p-4 text-sm text-neutral-400"
     >
-      {{ props.emptyText ?? "할 일이 없습니다." }}
+      {{ emptyText }}
     </p>
   </section>
 </template>
