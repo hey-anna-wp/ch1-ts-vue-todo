@@ -18,6 +18,7 @@ declare module 'vue' {
     HistoryToolbar: typeof import('./src/components/todo/history/HistoryToolbar.vue')['default']
     IconButton: typeof import('./src/components/ui/IconButton.vue')['default']
     PageHeader: typeof import('./src/components/common/PageHeader.vue')['default']
+    Pagination: typeof import('./src/components/ui/Pagination.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SortToggle: typeof import('./src/components/todo/common/SortToggle.vue')['default']
