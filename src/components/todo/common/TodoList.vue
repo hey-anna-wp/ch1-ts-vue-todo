@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TodoSummary from "@/components/todo/home/TodoSummary.vue"
 import SortToggle from "@/components/todo/common/SortToggle.vue"
+import Pagination from "@/components/ui/Pagination.vue"
 import type { SortOrder } from "@/types/todo"
 
 const props = withDefaults(
@@ -9,6 +10,11 @@ const props = withDefaults(
     total: number
     emptyText?: string
     sortOrder?: SortOrder
+    page?: number
+    totalPages?: number
+    canPrev?: boolean
+    canNext?: boolean
+    rangeText?: string
   }>(),
   {
     emptyText: "할 일이 없습니다.",
@@ -17,6 +23,9 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   (e: "toggle-sort"): void
+  (e: "set-page", page: number): void
+  (e: "prev-page"): void
+  (e: "next-page"): void
 }>()
 </script>
 
@@ -45,5 +54,17 @@ const emit = defineEmits<{
     >
       {{ emptyText }}
     </p>
+
+    <Pagination
+      v-if="total > 0 && (totalPages ?? 1) > 1"
+      :current-page="page ?? 1"
+      :total-pages="totalPages ?? 1"
+      :can-prev="canPrev ?? false"
+      :can-next="canNext ?? false"
+      :range-text="rangeText ?? ''"
+      @set="emit('set-page', $event)"
+      @prev="emit('prev-page')"
+      @next="emit('next-page')"
+    />
   </section>
 </template>
